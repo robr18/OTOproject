@@ -5,86 +5,112 @@ import java.util.Random;
 public class Paciente {
 
 	Random R=new Random();
+
 	private String nombre;
-	private String tipSangre;
+	private String tipoSangre;
 	private boolean alta;
 	private String padecimiento;
 	private int edad;
 	private char sexo;
 	private String rfc;
 	private int idP;
+	static int tam = 100;
 	
 	public Paciente()
 	{
-		nombre=" ";
-		tipSangre=" ";
-		alta=false;
-		padecimiento=" ";
-		edad=0;
-		sexo=' ';
-		rfc=" ";
-		idP=0; //Que el numero de id nos lo de un random
+		this.nombre=" ";
+		this.tipoSangre=" ";
+		this.alta=false;
+		this.padecimiento=" ";
+		this.edad=0;
+		this.sexo=' ';
+		this.rfc=" ";
+		this.idP=0; //Que el numero de id nos lo de un random
 	}
 	
 	public Paciente(String n,String ts,String p,int e,char s,String r)
 	{
-		nombre=n;
-		tipSangre=ts;
-		alta=true;
-		padecimiento=p;
-		edad=e;
-		sexo=s;
-		rfc=r;
-		idP=R.nextInt(100);
+		this.nombre=n;
+		this.tipoSangre=ts;
+		this.alta=true;
+		this.padecimiento=p;
+		this.edad=e;
+		this.sexo=s;
+		this.rfc=r;
+		this.idP= 100 + R.nextInt(900);
 	}
-	
-	public void putNombre(String n)
-	{
-		nombre=n;
-	}
-	
-	public void putSangre(String ts)
-	{
-		tipSangre=ts;
-	}
-	
-	public void putPadecimiento(String p)
-	{
-		padecimiento=p;
-	}
-	
-	public void putEdad(int e)
-	{
-		edad=e;
-	}
-	
-	public void putRfc(String r)
-	{
-		rfc=r;
-	}
-	
-	public void putID(int id)
-	{
-		idP=id;
-	}
-	
+
 	public String getNombre()
 	{
-		return nombre;
+		return this.nombre;
 	}
 	
-	public String getSangre()
+	public String getTipoSangre()
 	{
-		return tipSangre;
+		return this.tipoSangre;
 	}
 	
 	public boolean getAlta()
 	{
-		return alta;
+		return this.alta;
 	}
 	
 	public String getPadecimiento()
 	{
-		return padecimiento;
+		return this.padecimiento;
+	}
+	
+	public int getEdad()
+	{
+		return this.edad;
+	}
+
+	public char getSexo()
+	{
+		return this.sexo;
+	}
+	
+	public String getRFC()
+	{
+		return this.rfc;
+	}
+	public int getIdPaciente()
+	{
+		return this.idP;
+	}
+
+	public void putTipoSangre(String ts)
+	{
+		this.tipoSangre=ts;
+	}
+
+	public void putPadecimiento(String p)
+	{
+		this.padecimiento=p;
+	}
+	
+	public void putEdad(int e)
+	{
+		this.edad=e;
+	}
+	
+	public void putRFC(String r)
+	{
+		this.rfc=r;
+	}
+
+	public void putIdPaciente()
+	{
+		this.idP = 100 + R.nextInt(900);
+	}
+	
+	public void putIdPaciente(int id)
+	{
+		if(id < 100){
+            System.out.println("Id invalido");
+            this.putIdPaciente();
+        }else{
+            this.idP = id;
+        }
 	}
 }
