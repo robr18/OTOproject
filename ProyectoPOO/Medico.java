@@ -3,79 +3,92 @@ import java.util.*;
 
 public class Medico{
 
+    Random R=new Random();
+
     private String nombre;
     private String direccion;
     private String rfc;
     private int edad;
     private int idEmpleado;
-    int tam;
+    static int tam = 100;
 
     public Medico()
     {
-        nombre=" ";
-        direccion=" ";
-        rfc=" ";
-        edad=0;
-        idEmpleado=0;
+        this.nombre=" ";
+        this.direccion=" ";
+        this.rfc=" ";
+        this.edad=0;
+        this.idEmpleado=0;
     }
     
     public Medico(String n,String d,String r,int e)
     {
-        nombre=n;
-        direccion=d;
-        rfc=r;
-        edad=e;
+        this.nombre=n;
+        this.direccion=d;
+        this.rfc=r;
+        this.edad=e;
+        this.idEmpleado = 100 + R.nextInt(900);
     }
 
-    public String getName()
+    public String getNombre()
     {
-        return nombre;
+        return this.nombre;
     }
 
     public String getDireccion()
     {
-        return direccion;
+        return this.direccion;
     }
 
-    public String getRfc()
+    public String getRFC()
     {
-        return rfc;
+        return this.rfc;
     }
 
-    public int edad()
+    public int getEdad()
     {
-        return edad;
+        return this.edad;
     }
 
-    public int getIde()
+    public int getIdMedico()
     {
-        return idEmpleado;
+        return this.idEmpleado;
     }
 
-    public void putName(String n)
+    public void putNombre(String n)
     {
-        nombre=n;
+        this.nombre=n;
     }
 
     public void putDireccion(String d)
     {
-        direccion=d;
+        this.direccion=d;
     }
 
-    public void putRfc(String r)
+    public void putRFC(String r)
     {
-        rfc=r;
+        this.rfc=r;
     }
 
     public void putEdad(int n)
     {
-        edad=n;
+        this.edad=n;
     }
 
-    public void putIde()
+    public void putIdMedico()
     {
-        Random R=new Random();
-        idEmpleado=R.nextInt(100);
+        this.idEmpleado=100 + R.nextInt(900);
+    }
+
+    public void putIdMedico(int id) 
+    {
+        if(id < 100){
+            System.out.println("Id invalido");
+            this.putIdMedico();
+        }else{
+            this.idEmpleado = id;
+        }
+
     }
 
 }
