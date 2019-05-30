@@ -9,24 +9,35 @@ public class Area{
     private String descAct;
     private int piso;
     private String direccion;
+    private boolean borrado;
     int idArea;
     static int tam = 100;
 
     public Area()
     {
-        this.nombre=" ";
-        this.descAct=" ";
-        this.piso=0;
-        this.direccion=" ";
-        this.idArea=0;
+        nombre=" ";
+        descAct=" ";
+        piso=0;
+        direccion=" ";
+        idArea=0;
     }
     public Area(String n, String desc, int p, String dir)
     {
-        this.nombre=n;
-        this.descAct=desc;
-        this.piso=p;
-        this.direccion=dir;
-        this.idArea= 100 + R.nextInt(900);;
+        nombre=n;
+        descAct=desc;
+        piso=p;
+        direccion=dir;
+        idArea= 100 + R.nextInt(900);;
+    }
+    
+    public boolean Eliminado()
+   	{
+   		return borrado;
+   	}
+       
+    public void Eliminar(boolean e)
+    {
+    	borrado=e;
     }
 
     public String getNombreArea()
