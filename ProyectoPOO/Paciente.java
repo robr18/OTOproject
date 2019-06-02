@@ -13,32 +13,43 @@ public class Paciente {
 	private int edad;
 	private char sexo;
 	private String rfc;
+	private boolean borrado;
 	private int idP;
 	static int tam = 100;
 	
 	public Paciente()
 	{
-		this.nombre=" ";
-		this.tipoSangre=" ";
-		this.alta=false;
-		this.padecimiento=" ";
-		this.edad=0;
-		this.sexo=' ';
-		this.rfc=" ";
-		this.idP=0; //Que el numero de id nos lo de un random
+		nombre=" ";
+		tipoSangre=" ";
+		alta=false;
+		padecimiento=" ";
+		edad=0;
+		sexo=' ';
+		rfc=" ";
+		idP=0; //Que el numero de id nos lo de un random
 	}
 	
 	public Paciente(String n,String ts,String p,int e,char s,String r)
 	{
-		this.nombre=n;
-		this.tipoSangre=ts;
-		this.alta=true;
-		this.padecimiento=p;
-		this.edad=e;
-		this.sexo=s;
-		this.rfc=r;
-		this.idP= 100 + R.nextInt(900);
+		nombre=n;
+		tipoSangre=ts;
+		alta=true;
+		padecimiento=p;
+		edad=e;
+		sexo=s;
+		rfc=r;
+		idP= 100 + R.nextInt(900);
 	}
+	
+	public boolean Eliminado()
+	{
+		return borrado;
+	}
+    
+    public void Eliminar(boolean e)
+    {
+    	borrado=e;
+    }
 
 	public String getNombre()
 	{
@@ -62,7 +73,7 @@ public class Paciente {
 	
 	public int getEdad()
 	{
-		return this.edad;
+		return edad;
 	}
 
 	public char getSexo()
@@ -79,6 +90,11 @@ public class Paciente {
 		return this.idP;
 	}
 
+	public void putNombre(String n) 
+	{
+		nombre=n;
+	}
+	
 	public void putTipoSangre(String ts)
 	{
 		this.tipoSangre=ts;
@@ -112,5 +128,18 @@ public class Paciente {
         }else{
             this.idP = id;
         }
+	}
+	
+	public String toString()
+	{
+		return nombre+" "+edad;
+	}
+
+	public static void main(String[] args) {
+		
+		Paciente obj=new Paciente("Roberto","0+","Cancer",15,'M',"robet4546");
+		obj.getEdad();
+		System.out.println(obj);
+		
 	}
 }

@@ -11,6 +11,7 @@ public class Medico{
     private int edad;
     private int idEmpleado;
     static int tam = 100;
+    private boolean borrado;
 
     public Medico()
     {
@@ -18,6 +19,7 @@ public class Medico{
         this.direccion=" ";
         this.rfc=" ";
         this.edad=0;
+        borrado=true;
         this.idEmpleado=0;
     }
     
@@ -29,10 +31,20 @@ public class Medico{
         this.edad=e;
         this.idEmpleado = 100 + R.nextInt(900);
     }
+    
+    public boolean Eliminado()
+	{
+		return borrado;
+	}
+    
+    public void Eliminar(boolean e)
+    {
+    	borrado=e;
+    }
 
     public String getNombre()
     {
-        return this.nombre;
+        return nombre;
     }
 
     public String getDireccion()
@@ -47,7 +59,7 @@ public class Medico{
 
     public int getEdad()
     {
-        return this.edad;
+        return edad;
     }
 
     public int getIdMedico()
@@ -90,6 +102,18 @@ public class Medico{
         }
 
     }
+    
+    public String toString()
+    {
+    	return nombre+" "+edad; 
+    }
+    
+    public static void main(String[] args) {
+		Medico obj=new Medico("Roberto","Colinas","ErER",15);
+		System.out.println(obj);
+		int edad=obj.getEdad();
+		System.out.println(edad);
+	}
 
 }
 
