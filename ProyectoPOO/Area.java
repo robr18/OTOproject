@@ -1,6 +1,4 @@
-package ProyectoPOO;
 import java.util.*;
-
 public class Area{
 
     Random R=new Random();
@@ -15,57 +13,60 @@ public class Area{
 
     public Area()
     {
-        nombre=" ";
-        descAct=" ";
-        piso=0;
-        direccion=" ";
-        idArea=0;
+        this.nombre=" ";
+        this.descAct=" ";
+        this.piso=0;
+        this.direccion=" ";
+        this.borrado=false;
+        this.idArea= 1000 + R.nextInt(9000);
     }
     public Area(String n, String desc, int p, String dir)
     {
-        nombre=n;
-        descAct=desc;
-        piso=p;
-        direccion=dir;
-        idArea= 100 + R.nextInt(900);;
+        this.nombre=n;
+        this.descAct=desc;
+        this.piso=p;
+        this.direccion=dir;
+        this.borrado=false;
+        this.idArea= 1000 + R.nextInt(9000);
     }
     
-    public boolean Eliminado()
-   	{
-   		return borrado;
-   	}
-       
-    public void Eliminar(boolean e)
-    {
-    	borrado=e;
-    }
-
+    
     public String getNombreArea()
     {
         return this.nombre;
     }
-
+    
     public String getDescA()
     {
         return this.descAct;
     }
-
+    
     public int getPiso()
     {
         return this.piso;
     }
-
+    
     public String getDireccionA()
     {
         return this.direccion;
     }
-
+    
     public int getIdArea()
     {
         return this.idArea;
     }
 
-    public void putNombre(String n) 
+    public boolean Eliminado()
+    {
+        return this.borrado;
+    }       
+    
+    public void Eliminado(boolean e)
+    {
+        this.borrado=e;
+    }
+    
+    public void putNombreArea(String n) 
     {
         this.nombre = n;
     }
@@ -87,18 +88,23 @@ public class Area{
 
     public void putIdArea() 
     {
-        this.idArea = 100 + R.nextInt(900);
+        int id = 1000 + R.nextInt(9000);
+        this.idArea = id;
+        System.out.println("Nuevo id: "+id);
     }
 
     public void putIdArea(int id) 
     {
-        if(id < 100){
-            System.out.println("Id invalido");
+        if(id < 1000){
             this.putIdArea();
+            System.out.println("Id invalido");
         }else{
             this.idArea = id;
         }
-
     }
 
+    public String toString()
+	{
+		return this.idArea+" - "+this.nombre;
+	}
 }

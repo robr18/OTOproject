@@ -1,6 +1,4 @@
-package ProyectoPOO;
 import java.util.*;
-
 public class Medico{
 
     Random R=new Random();
@@ -9,9 +7,10 @@ public class Medico{
     private String direccion;
     private String rfc;
     private int edad;
-    private int idEmpleado;
-    static int tam = 100;
+    private int idMedico;
+    private int idArea;
     private boolean borrado;
+    static int tam = 100;
 
     public Medico()
     {
@@ -19,32 +18,37 @@ public class Medico{
         this.direccion=" ";
         this.rfc=" ";
         this.edad=0;
-        borrado=true;
-        this.idEmpleado=0;
+        this.borrado=false;
+        this.idMedico=0;
+        this.idArea=0;
     }
     
-    public Medico(String n,String d,String r,int e)
-    {
+    public Medico(String n,String d,String r,int e,String nomarea)    {
+        ConsultasAreas consultaArea =  new ConsultasAreas();
+        Area objArea = consultaArea.getArea(nomarea);
         this.nombre=n;
         this.direccion=d;
         this.rfc=r;
         this.edad=e;
-        this.idEmpleado = 100 + R.nextInt(900);
+        this.borrado=false;
+        this.idMedico = 1000 + R.nextInt(9000);
+        this.idArea = objArea.idArea;
+        consultaArea.Cerrar();
     }
     
     public boolean Eliminado()
 	{
-		return borrado;
+		return this.borrado;
 	}
     
     public void Eliminar(boolean e)
     {
-    	borrado=e;
+    	this.borrado=e;
     }
 
     public String getNombre()
     {
-        return nombre;
+        return this.nombre;
     }
 
     public String getDireccion()
@@ -59,12 +63,17 @@ public class Medico{
 
     public int getEdad()
     {
-        return edad;
+        return this.edad;
     }
 
     public int getIdMedico()
     {
-        return this.idEmpleado;
+        return this.idMedico;
+    }
+
+    public int getIdArea()
+    {
+        return this.idArea;
     }
 
     public void putNombre(String n)
@@ -89,32 +98,28 @@ public class Medico{
 
     public void putIdMedico()
     {
-        this.idEmpleado=100 + R.nextInt(900);
+        int id = 1000 + R.nextInt(9000);
+        this.idMedico = id;
+        System.out.println("Nuevo id: "+id);
     }
 
     public void putIdMedico(int id) 
     {
-        if(id < 100){
+        if(id < 1000){
             System.out.println("Id invalido");
             this.putIdMedico();
-        }else{
-            this.idEmpleado = id;
-        }
+        }else
+            this.idMedico = id;
+    }
 
+    public void putIdArea(int id){
+        this.idArea = id;
     }
     
     public String toString()
     {
-    	return nombre+" "+edad; 
+    	return this.idMedico+" - "+this.nombre+" - "+this.idArea; 
     }
-    
-    public static void main(String[] args) {
-		Medico obj=new Medico("Roberto","Colinas","ErER",15);
-		System.out.println(obj);
-		int edad=obj.getEdad();
-		System.out.println(edad);
-	}
-
 }
 
 

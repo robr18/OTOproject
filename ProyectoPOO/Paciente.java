@@ -1,5 +1,3 @@
-package ProyectoPOO;
-
 import java.util.Random;
 
 public class Paciente {
@@ -14,43 +12,42 @@ public class Paciente {
 	private char sexo;
 	private String rfc;
 	private boolean borrado;
-	private int idP;
+	private int idPaciente;
+	private int idMedico;
+	private int idArea;
 	static int tam = 100;
 	
 	public Paciente()
 	{
-		nombre=" ";
-		tipoSangre=" ";
-		alta=false;
-		padecimiento=" ";
-		edad=0;
-		sexo=' ';
-		rfc=" ";
-		idP=0; //Que el numero de id nos lo de un random
+		this.nombre=" ";
+		this.tipoSangre=" ";
+		this.alta=false;
+		this.padecimiento=" ";
+		this.edad=0;
+		this.sexo=' ';
+		this.rfc=" ";
+		this.idPaciente=0;
+		this.idMedico=0;
+		this.idArea=0;
 	}
 	
-	public Paciente(String n,String ts,String p,int e,char s,String r)
+	public Paciente(String n,String ts,String p,int e,char s,String r,String np)
 	{
-		nombre=n;
-		tipoSangre=ts;
-		alta=true;
-		padecimiento=p;
-		edad=e;
-		sexo=s;
-		rfc=r;
-		idP= 100 + R.nextInt(900);
+		ConsultasMedicos objConsultaMedico= new ConsultasMedicos();
+		Medico objMedico = objConsultaMedico.getMedico(np);
+		this.nombre=n;
+		this.tipoSangre=ts;
+		this.alta=true;
+		this.padecimiento=p;
+		this.edad=e;
+		this.sexo=s;
+		this.rfc=r;
+		this.idPaciente= 1000 + R.nextInt(9000);
+		this.idMedico= objMedico.getIdMedico();
+		this.idArea=objMedico.getIdArea();
 	}
 	
-	public boolean Eliminado()
-	{
-		return borrado;
-	}
-    
-    public void Eliminar(boolean e)
-    {
-    	borrado=e;
-    }
-
+	
 	public String getNombre()
 	{
 		return this.nombre;
@@ -75,7 +72,7 @@ public class Paciente {
 	{
 		return edad;
 	}
-
+	
 	public char getSexo()
 	{
 		return this.sexo;
@@ -85,19 +82,45 @@ public class Paciente {
 	{
 		return this.rfc;
 	}
+
 	public int getIdPaciente()
 	{
-		return this.idP;
+		return this.idPaciente;
+	}
+	
+	public int getIdMedico()
+	{
+		return this.idMedico;
+	}
+	
+	public int getIdArea()
+	{
+		return this.idArea;
+	}
+	
+	public boolean Eliminado()
+	{
+		return this.borrado;
+	}
+	
+	public void Eliminar(boolean e)
+	{
+		this.borrado=e;
 	}
 
 	public void putNombre(String n) 
 	{
-		nombre=n;
+		this.nombre=n;
 	}
 	
 	public void putTipoSangre(String ts)
 	{
 		this.tipoSangre=ts;
+	}
+
+	public void putAlta(Boolean al)
+	{
+		this.alta=al;
 	}
 
 	public void putPadecimiento(String p)
@@ -109,6 +132,11 @@ public class Paciente {
 	{
 		this.edad=e;
 	}
+
+	public void putSexo(char sx)
+	{
+		this.sexo=sx;
+	}
 	
 	public void putRFC(String r)
 	{
@@ -117,29 +145,31 @@ public class Paciente {
 
 	public void putIdPaciente()
 	{
-		this.idP = 100 + R.nextInt(900);
+		this.idPaciente = 1000 + R.nextInt(9000);
 	}
 	
 	public void putIdPaciente(int id)
 	{
-		if(id < 100){
+		if(id < 1000){
             System.out.println("Id invalido");
             this.putIdPaciente();
         }else{
-            this.idP = id;
+            this.idPaciente = id;
         }
 	}
 	
-	public String toString()
+	public void putIdMedico(int idM)
 	{
-		return nombre+" "+edad;
+		this.idMedico = idM;
 	}
 
-	public static void main(String[] args) {
-		
-		Paciente obj=new Paciente("Roberto","0+","Cancer",15,'M',"robet4546");
-		obj.getEdad();
-		System.out.println(obj);
-		
+	public void putIdArea(int idA)
+	{
+		this.idArea = idA;
+	}	
+	
+	public String toString()
+	{
+		return this.idPaciente+" - "+this.nombre;
 	}
 }
